@@ -37,7 +37,7 @@ int main() {
   std::cout << user << std::endl;
 
   nlohmann::json j = user;
-  std::cout << std::endl<< j.dump(2) << std::endl;
+  std::cout << std::endl << j.dump(2) << std::endl;
 
   User from_json = j.get<User>();
   std::cout << std::endl << from_json << std::endl;

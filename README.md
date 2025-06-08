@@ -5,6 +5,14 @@ It prevents accidental leaks of secrets (like passwords or tokens) by ensuring t
 
 ---
 
+## :warning: Disclaimer :warning:
+
+This project is for educational and experimental purposes only and is **not intended for production use**.  
+It is meant to explore the topic of accidental data leaks in C++.  
+This library does **not** provide cryptographic security or memory erasure.
+
+---
+
 ## Features
 
 - **Type-safe wrapper** for any type (`Conceal<T>`)
@@ -50,6 +58,7 @@ int main() {
    ```
 
 2. **JSON support**
+
    - [nlohmann/json](https://github.com/nlohmann/json) will be required and automatically linked.
    - To disable JSON support, set the option in your `CMakeLists.txt`:
 
@@ -64,23 +73,24 @@ int main() {
      ```
 
 3. **Custom hidden message**
+
    - By default, the hidden message is `<hidden>`.
    - To override it, set the option in your CMakeLists.txt
 
-    ```cmake
-    set(CONCEAL_HIDDEN_MSG "***SECRET***")
-    ```
+   ```cmake
+   set(CONCEAL_HIDDEN_MSG "***SECRET***")
+   ```
 
    -Or from the command line:
 
-    ```cmake
-    cmake .. -DCONCEAL_HIDDEN_MSG="***SECRET***"
-    ```
+   ```cmake
+   cmake .. -DCONCEAL_HIDDEN_MSG="***SECRET***"
+   ```
 
 ### Standalone / Single-header
 
 - Copy `include/conceal/conceal.hpp` into your project.
-- By default, JSON support is **not** enabled. To enable JSON support, define the macro `CONCEAL_USE_JSON`  **before** including the header:
+- By default, JSON support is **not** enabled. To enable JSON support, define the macro `CONCEAL_USE_JSON` **before** including the header:
 
   ```cpp
   #define CONCEAL_USE_JSON
@@ -152,7 +162,7 @@ cd conceal
 cmake -B build -S .
 cmake --build build
 
-# Run exemple
+# Run example
 ./build/examples/conceal_example
 
 # Run tests
@@ -188,7 +198,7 @@ A: Yes, as long as the type is copyable/movable. It works with standard and user
 A: No. Conceal is for accidental leak prevention (e.g., logs, serialization). It does **not** encrypt or securely erase memory.
 
 **Q: How do I access the real value?**  
-A: Use implicit conversion or dereference:  
+A: Use implicit conversion or dereference:
 
 ```cpp
 std::string s = secret; // or
@@ -200,10 +210,3 @@ std::string s = *secret;
 ## License
 
 MIT License
-
----
-
-## Disclaimer
-
-This library is intended as a convenience for accidental leaks.  
-It does **not** provide cryptographic security or memory erasure.
